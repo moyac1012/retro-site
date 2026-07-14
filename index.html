@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>★☆ MINATO'S CYBER ROOM ☆★</title>
+  <meta name="description" content="2000年代の個人ホームページをイメージした架空プロフィールサイトです。">
+  <style>
+    :root {
+      --cyan: #00ffff;
+      --yellow: #ffff00;
+      --pink: #ff66cc;
+      --lime: #99ff00;
+      --navy: #000033;
+      --blue: #0000aa;
+      --silver: #d7d7d7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: #ffffff;
+      font-family: "MS PGothic", "MS Gothic", Osaka, monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      background-color: #000020;
+      background-image:
+        radial-gradient(circle at 12px 14px, #ffffff 0 1px, transparent 1.5px),
+        radial-gradient(circle at 40px 36px, #00ffff 0 1px, transparent 1.5px),
+        radial-gradient(circle at 26px 58px, #ff66cc 0 1px, transparent 1.5px);
+      background-size: 64px 64px;
+    }
+
+    a {
+      color: var(--cyan);
+      text-decoration: underline;
+    }
+
+    a:visited {
+      color: #cc99ff;
+    }
+
+    a:hover,
+    a:focus {
+      color: var(--yellow);
+      background: #cc0000;
+    }
+
+    .page {
+      width: min(980px, calc(100% - 16px));
+      margin: 8px auto 24px;
+      border: 6px ridge #c0c0c0;
+      background: rgba(0, 0, 80, 0.96);
+      box-shadow: 0 0 24px #00ffff;
+    }
+
+    .top-strip {
+      padding: 3px 8px;
+      color: #000000;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      background: repeating-linear-gradient(
+        45deg,
+        #ffff00 0 10px,
+        #000000 10px 20px
+      );
+    }
+
+    .top-strip span {
+      padding: 2px 10px;
+      background: #ffff00;
+    }
+
+    header {
+      padding: 18px 12px 10px;
+      text-align: center;
+      background:
+        linear-gradient(rgba(0,0,80,.8), rgba(0,0,30,.9)),
+        repeating-linear-gradient(90deg, #000099 0 4px, #000044 4px 8px);
+      border-bottom: 5px groove #ff66cc;
+    }
+
+    .site-title {
+      margin: 0;
+      color: var(--yellow);
+      font-family: "Comic Sans MS", "MS PGothic", cursive;
+      font-size: clamp(30px, 6vw, 58px);
+      letter-spacing: 2px;
+      line-height: 1.05;
+      text-shadow:
+        3px 3px 0 #ff0088,
+        -2px -2px 0 #0066ff,
+        0 0 12px #ffffff;
+      transform: rotate(-1deg);
+    }
+
+    .subtitle {
+      color: var(--cyan);
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .rainbow-line {
+      height: 10px;
+      margin: 10px auto;
+      background: linear-gradient(
+        90deg,
+        red,
+        orange,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        violet
+      );
+      border: 2px outset #ffffff;
+    }
+
+    .ticker {
+      overflow: hidden;
+      margin-top: 8px;
+      padding: 4px 0;
+      color: #000000;
+      white-space: nowrap;
+      background: #ffff00;
+      border: 3px inset #ffffff;
+    }
+
+    .ticker-track {
+      display: inline-block;
+      min-width: 100%;
+      padding-left: 100%;
+      font-weight: bold;
+      animation: ticker 17s linear infinite;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 215px minmax(0, 1fr);
+      gap: 8px;
+      padding: 8px;
+    }
+
+    .sidebar,
+    main {
+      min-width: 0;
+    }
+
+    .box {
+      margin-bottom: 9px;
+      border: 4px ridge #c0c0c0;
+      background: #000044;
+    }
+
+    .box-title {
+      margin: 0;
+      padding: 3px 6px;
+      color: #000000;
+      font-size: 15px;
+      text-align: center;
+      background: linear-gradient(#ffffff, #99ccff 45%, #3366cc 48%, #99ccff);
+      border-bottom: 3px groove #ffffff;
+    }
+
+    .box-body {
+      padding: 8px;
+    }
+
+    .nav-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-list li {
+      margin: 5px 0;
+      padding: 2px 5px;
+      color: #ffffff;
+      background: linear-gradient(90deg, #660099, #000066);
+      border: 2px outset #9966cc;
+    }
+
+    .nav-list a {
+      display: block;
+      font-weight: bold;
+    }
+
+    .counter {
+      padding: 8px 4px;
+      color: #00ff66;
+      text-align: center;
+      font-family: "Courier New", monospace;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      background: #000000;
+      border: 4px inset #808080;
+      text-shadow: 0 0 6px #00ff66;
+    }
+
+    .tiny {
+      font-size: 11px;
+    }
+
+    .blink {
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      50% { visibility: hidden; }
+    }
+
+    .under-construction {
+      color: #000000;
+      text-align: center;
+      font-weight: bold;
+      background: repeating-linear-gradient(
+        -45deg,
+        #ffff00 0 12px,
+        #000000 12px 24px
+      );
+      border: 4px outset #ffff00;
+    }
+
+    .under-construction span {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #ffff00;
+    }
+
+    .profile-card {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .avatar {
+      min-height: 195px;
+      padding: 12px 6px;
+      color: #ffffff;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 33%, #ffccaa 0 28px, transparent 29px),
+        radial-gradient(ellipse at 50% 85%, #3366ff 0 52px, transparent 53px),
+        linear-gradient(135deg, #ff66cc, #330066 55%, #00ffff);
+      border: 5px ridge #ffffff;
+      box-shadow: inset 0 0 0 3px #000099;
+    }
+
+    .avatar-face {
+      margin-top: 42px;
+      color: #000000;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 5px;
+    }
+
+    .avatar-name {
+      margin-top: 74px;
+      padding: 2px;
+      color: #ffff00;
+      font-weight: bold;
+      background: #000066;
+      border: 2px outset #ffffff;
+    }
+
+    table.profile {
+      width: 100%;
+      border-collapse: collapse;
+      background: #000033;
+    }
+
+    table.profile th,
+    table.profile td {
+      padding: 5px 7px;
+      border: 2px groove #9999ff;
+      vertical-align: top;
+    }
+
+    table.profile th {
+      width: 30%;
+      color: #ffff00;
+      text-align: left;
+      background: #330066;
+    }
+
+    .section-heading {
+      margin: 0 0 8px;
+      padding: 5px 8px;
+      color: #ffffff;
+      font-size: 20px;
+      background: linear-gradient(90deg, #ff0088, #660099, #000099);
+      border: 4px ridge #ffccff;
+      text-shadow: 2px 2px #000000;
+    }
+
+    .diary-entry {
+      margin-bottom: 12px;
+      padding: 8px;
+      color: #000000;
+      background: #ffffcc;
+      border: 4px double #ff9900;
+    }
+
+    .diary-date {
+      color: #cc0000;
+      font-weight: bold;
+      border-bottom: 1px dashed #cc6600;
+    }
+
+    .favorite-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .favorite-item {
+      padding: 7px;
+      color: #000000;
+      background: #ccffff;
+      border: 3px outset #ffffff;
+    }
+
+    .favorite-item strong {
+      color: #990066;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
+    }
+
+    .badge {
+      width: 88px;
+      min-height: 31px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+      color: #ffffff;
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #ff0088, #000099);
+      border: 2px outset #ffffff;
+    }
+
+    .guestbook-form label {
+      display: block;
+      margin-top: 6px;
+      color: #ffff00;
+      font-weight: bold;
+    }
+
+    input,
+    textarea,
+    button {
+      font: inherit;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 5px;
+      color: #000000;
+      background: #ffffff;
+      border: 3px inset #d0d0d0;
+    }
+
+    textarea {
+      min-height: 75px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 7px;
+      padding: 5px 11px;
+      color: #000000;
+      font-weight: bold;
+      background: #d4d0c8;
+      border: 3px outset #ffffff;
+      cursor: pointer;
+    }
+
+    button:active {
+      border-style: inset;
+    }
+
+    .guestbook-log {
+      margin-top: 9px;
+      padding: 7px;
+      color: #000000;
+      background: #ffffff;
+      border: 3px inset #cccccc;
+    }
+
+    .guestbook-entry {
+      padding: 6px 0;
+      border-bottom: 1px dashed #999999;
+    }
+
+    .guestbook-entry:last-child {
+      border-bottom: 0;
+    }
+
+    .notice {
+      padding: 8px;
+      color: #000000;
+      background: #ffccff;
+      border: 4px ridge #ff66cc;
+    }
+
+    footer {
+      padding: 14px 8px 22px;
+      text-align: center;
+      background: #000022;
+      border-top: 5px groove #00ffff;
+    }
+
+    .mail {
+      color: #ffff00;
+      font-weight: bold;
+    }
+
+    .webring {
+      display: inline-block;
+      margin: 8px auto;
+      padding: 5px 12px;
+      color: #000000;
+      font-weight: bold;
+      background: #ffffff;
+      border: 4px outset #dddddd;
+    }
+
+    .snow {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .snow i {
+      position: absolute;
+      top: -20px;
+      color: #ffffff;
+      font-style: normal;
+      text-shadow: 0 0 4px #00ffff;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    .accessibility-note {
+      color: #cccccc;
+      font-size: 11px;
+    }
+
+    @media (max-width: 720px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        grid-template-columns: 1fr;
+      }
+
+      .avatar {
+        width: min(220px, 100%);
+        margin: 0 auto;
+      }
+
+      .favorite-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+
+      .snow {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="snow" aria-hidden="true" id="snow"></div>
+
+  <div class="page">
+    <div class="top-strip"><span>★ このページは Internet Explorer 6.0 / 1024×768 で最適化されています（気分だけ）★</span></div>
+
+    <header>
+      <p class="blink">★☆★ WELCOME TO MY HOMEPAGE ★☆★</p>
+      <h1 class="site-title">MINATO'S CYBER ROOM</h1>
+      <p class="subtitle">～ 電脳世界の片隅にある、星野ミナトの秘密基地 ～</p>
+      <div class="rainbow-line"></div>
+
+      <div class="ticker" aria-label="お知らせ">
+        <div class="ticker-track">
+          キリ番「77777」を踏んだ方は掲示板で報告してね！！　★　相互リンク募集中　★　日記を更新しました（架空）　★
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <section class="box">
+          <h2 class="box-title">★ MENU ★</h2>
+          <div class="box-body">
+            <ul class="nav-list">
+              <li>▶ <a href="#top">TOP</a></li>
+              <li>▶ <a href="#profile">プロフィール</a></li>
+              <li>▶ <a href="#diary">きまぐれ日記</a></li>
+              <li>▶ <a href="#favorites">好きなもの</a></li>
+              <li>▶ <a href="#links">おすすめリンク</a></li>
+              <li>▶ <a href="#guestbook">掲示板</a></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="box">
+          <h2 class="box-title">あなたは</h2>
+          <div class="box-body">
+            <div class="counter" id="counter">000001</div>
+            <p style="text-align:center; margin-bottom:0;">人目のお客様です！</p>
+            <p class="tiny" style="text-align:center;">※このブラウザ内だけの擬似カウンターです</p>
+          </div>
+        </section>
+
+        <section class="box">
+          <h2 class="box-title">管理人ステータス</h2>
+          <div class="box-body">
+            <p>NAME：<strong>ミナト</strong></p>
+            <p>ONLINE：<span style="color:#00ff66;">●</span> たぶんいます</p>
+            <p>MOOD：(´▽｀*)</p>
+            <p>NOW PLAYING：<br>「放課後サイバードライブ」</p>
+            <button id="soundButton" type="button">♪ BGMっぽい音を鳴らす</button>
+            <p class="tiny">※外部音源は使用しません。</p>
+          </div>
+        </section>
+
+        <section class="under-construction" aria-label="工事中">
+          <span class="blink">🚧 工 事 中 🚧</span>
+        </section>
+
+        <section class="box">
+          <h2 class="box-title">88×31 バナー</h2>
+          <div class="box-body">
+            <div class="badge-row">
+              <span class="badge">MINATO'S<br>CYBER ROOM</span>
+              <span class="badge">NO COOKIE<br>NO TRACKING</span>
+              <span class="badge">HTML<br>HAND MADE</span>
+              <span class="badge">BEST VIEWED<br>WITH LOVE</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <main id="top">
+        <section class="box">
+          <h2 class="box-title">★ ようこそ ★</h2>
+          <div class="box-body">
+            <p style="text-align:center; color:#ffff00; font-size:18px;">
+              <span class="blink">☆</span>
+              はじめまして！星野ミナトのホームページへようこそ！
+              <span class="blink">☆</span>
+            </p>
+            <p>
+              ここは、架空の高校生「星野ミナト」が放課後にこっそり更新している個人サイトです。
+              日記、好きな音楽、レトロPC、夜空の写真などを気ままに紹介しています。
+            </p>
+            <div class="notice">
+              <strong>【重要】</strong><br>
+              このサイトに登場する人物・団体・メールアドレス・出来事はすべて架空です。
+              実在の人物や組織とは関係ありません。
+            </div>
+          </div>
+        </section>
+
+        <section class="box" id="profile">
+          <h2 class="box-title">★ PROFILE ★</h2>
+          <div class="box-body">
+            <h3 class="section-heading">管理人について</h3>
+            <div class="profile-card">
+              <div class="avatar" role="img" aria-label="架空の管理人、星野ミナトのレトロなイラスト風アバター">
+                <div class="avatar-face">・▽・</div>
+                <div class="avatar-name">HOSHINO MINATO</div>
+              </div>
+
+              <table class="profile">
+                <tr><th>ハンドルネーム</th><td>星野ミナト</td></tr>
+                <tr><th>誕生日</th><td>8月18日（しし座）</td></tr>
+                <tr><th>住んでいるところ</th><td>北海県 星見市（架空）</td></tr>
+                <tr><th>職業</th><td>高校2年生／電脳部の幽霊部員</td></tr>
+                <tr><th>趣味</th><td>ホームページ作り、夜空観察、ジャンクPC集め</td></tr>
+                <tr><th>特技</th><td>キーボードを見ないで「こんにちは」と打てる</td></tr>
+                <tr><th>好きな言葉</th><td>「リンクの先には、まだ見ぬ世界がある」</td></tr>
+                <tr><th>将来の夢</th><td>自作ゲームをフリーソフトとして公開すること</td></tr>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="box" id="diary">
+          <h2 class="box-title">★ きまぐれ日記 ★</h2>
+          <div class="box-body">
+            <h3 class="section-heading">DIARY</h3>
+
+            <article class="diary-entry">
+              <div class="diary-date">2004年11月23日（火）　タイトル：祝！ホームページ開設</div>
+              <p>
+                ついに自分のホームページを作りました！！(^o^)／<br>
+                HTML辞典とにらめっこしながら、テーブルの幅を直すだけで2時間かかりました……。
+                でも、文字が光って見えるだけで感動です。リンク集も少しずつ増やしたいです。
+              </p>
+            </article>
+
+            <article class="diary-entry">
+              <div class="diary-date">2004年12月03日（金）　タイトル：ジャンクPC発見</div>
+              <p>
+                商店街のリサイクル店で、青い半透明ケースの古いパソコンを発見！
+                電源は入りませんでしたが、見た目が宇宙船みたいで最高でした。
+                お小遣いを貯めて、いつか部屋に迎えたいです。
+              </p>
+            </article>
+
+            <article class="diary-entry">
+              <div class="diary-date">2004年12月24日（金）　タイトル：星を見ました</div>
+              <p>
+                雪がやんだあと、屋上から冬の星座を見ました。
+                寒かったけど、町の明かりの向こうにオリオン座がはっきり見えました。
+                デジカメでも撮ったけど、写真はほぼ真っ黒でした（笑）。
+              </p>
+            </article>
+
+            <p style="text-align:right;"><a href="#top">▲ ページの上へ</a></p>
+          </div>
+        </section>
+
+        <section class="box" id="favorites">
+          <h2 class="box-title">★ FAVORITES ★</h2>
+          <div class="box-body">
+            <h3 class="section-heading">好きなもの100選（まだ8個）</h3>
+            <div class="favorite-grid">
+              <div class="favorite-item"><strong>01. 音楽</strong><br>ピコピコした電子音、放課後ロック</div>
+              <div class="favorite-item"><strong>02. 食べ物</strong><br>メロンパン、コーンスープ、ラムネ</div>
+              <div class="favorite-item"><strong>03. ゲーム</strong><br>横スクロールアクション、育成ゲーム</div>
+              <div class="favorite-item"><strong>04. PC</strong><br>半透明ケース、CRTモニター、光るマウス</div>
+              <div class="favorite-item"><strong>05. 色</strong><br>ネオンブルー、宇宙みたいな紺色</div>
+              <div class="favorite-item"><strong>06. 場所</strong><br>放課後のPC室、夜の屋上、古本屋</div>
+              <div class="favorite-item"><strong>07. 動物</strong><br>フクロウ、柴犬、深海魚</div>
+              <div class="favorite-item"><strong>08. 季節</strong><br>冬。パソコンが熱暴走しにくいから</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="box" id="links">
+          <h2 class="box-title">★ LINK ROOM ★</h2>
+          <div class="box-body">
+            <h3 class="section-heading">おすすめサイト（すべて架空）</h3>
+            <ul>
+              <li><a href="#links" onclick="return fakeLink('蒼井レンの電脳観測所');">蒼井レンの電脳観測所</a> — 夜空と電子工作のページ</li>
+              <li><a href="#links" onclick="return fakeLink('ねこみみ素材倉庫');">ねこみみ素材倉庫</a> — かわいい壁紙とボタン素材</li>
+              <li><a href="#links" onclick="return fakeLink('放課後フリーソフト研究会');">放課後フリーソフト研究会</a> — 自作ゲーム紹介</li>
+              <li><a href="#links" onclick="return fakeLink('星見市ウェブリング');">星見市ウェブリング</a> — 地元ホームページを巡回</li>
+            </ul>
+
+            <p class="tiny">
+              リンクフリーです。報告は不要ですが、掲示板に一言あると管理人が喜びます。
+            </p>
+
+            <div style="text-align:center;">
+              <div class="webring">
+                ◀ 前のサイト ｜ 星見市ウェブリング ｜ 次のサイト ▶
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="box" id="guestbook">
+          <h2 class="box-title">★ BBS / 足あと帳 ★</h2>
+          <div class="box-body">
+            <h3 class="section-heading">何か書いていってね！</h3>
+            <form class="guestbook-form" id="guestbookForm">
+              <label for="guestName">お名前</label>
+              <input id="guestName" name="guestName" maxlength="24" value="通りすがり">
+
+              <label for="guestMessage">メッセージ</label>
+              <textarea id="guestMessage" name="guestMessage" maxlength="180" placeholder="はじめまして！"></textarea>
+
+              <button type="submit">書き込む</button>
+              <button type="button" id="clearGuestbook">ログを消す</button>
+            </form>
+
+            <div class="guestbook-log" id="guestbookLog" aria-live="polite">
+              <div class="guestbook-entry">
+                <strong>ミナト</strong>：ホームページへようこそ！足あとを残していってね。
+              </div>
+            </div>
+
+            <p class="tiny">
+              ※書き込みはサーバー送信されず、このブラウザの localStorage のみに保存されます。
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <p>
+        Since 2004.11.23 / Last Update 2004.12.24<br>
+        Webmaster：星野ミナト（架空）
+      </p>
+      <p class="mail">minato★example.invalid（★を@に変えてね）</p>
+      <p>Copyright © 2004 MINATO'S CYBER ROOM All Rights Reserved.</p>
+      <p class="accessibility-note">
+        このページはレトロ表現を再現しつつ、スマートフォン表示と動きの抑制設定にも対応しています。
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    "use strict";
+
+    function initializeCounter() {
+      const storageKey = "minatoCyberRoomCounter";
+      const current = Number.parseInt(localStorage.getItem(storageKey) || "0", 10) + 1;
+      localStorage.setItem(storageKey, String(current));
+      document.getElementById("counter").textContent = String(current).padStart(6, "0");
+    }
+
+    function createSnow() {
+      const snow = document.getElementById("snow");
+      const symbols = ["＊", "✦", "·", "☆"];
+      const fragment = document.createDocumentFragment();
+
+      for (let i = 0; i < 24; i += 1) {
+        const particle = document.createElement("i");
+        particle.textContent = symbols[i % symbols.length];
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.fontSize = `${8 + Math.random() * 13}px`;
+        particle.style.animationDuration = `${7 + Math.random() * 11}s`;
+        particle.style.animationDelay = `${-Math.random() * 18}s`;
+        particle.style.opacity = String(0.35 + Math.random() * 0.65);
+        fragment.appendChild(particle);
+      }
+
+      snow.appendChild(fragment);
+    }
+
+    function readGuestbook() {
+      try {
+        return JSON.parse(localStorage.getItem("minatoGuestbook") || "[]");
+      } catch {
+        return [];
+      }
+    }
+
+    function saveGuestbook(entries) {
+      localStorage.setItem("minatoGuestbook", JSON.stringify(entries.slice(-12)));
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function renderGuestbook() {
+      const log = document.getElementById("guestbookLog");
+      const entries = readGuestbook();
+
+      const defaultEntry =
+        '<div class="guestbook-entry"><strong>ミナト</strong>：ホームページへようこそ！足あとを残していってね。</div>';
+
+      const userEntries = entries
+        .map((entry) => {
+          return `<div class="guestbook-entry"><strong>${escapeHtml(entry.name)}</strong>：${escapeHtml(entry.message)}</div>`;
+        })
+        .join("");
+
+      log.innerHTML = defaultEntry + userEntries;
+    }
+
+    function initializeGuestbook() {
+      const form = document.getElementById("guestbookForm");
+      const clearButton = document.getElementById("clearGuestbook");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const nameInput = document.getElementById("guestName");
+        const messageInput = document.getElementById("guestMessage");
+        const name = nameInput.value.trim() || "名無し";
+        const message = messageInput.value.trim();
+
+        if (!message) {
+          alert("メッセージを入力してね！");
+          return;
+        }
+
+        const entries = readGuestbook();
+        entries.push({ name, message });
+        saveGuestbook(entries);
+        messageInput.value = "";
+        renderGuestbook();
+      });
+
+      clearButton.addEventListener("click", () => {
+        localStorage.removeItem("minatoGuestbook");
+        renderGuestbook();
+      });
+
+      renderGuestbook();
+    }
+
+    function initializeSoundButton() {
+      const button = document.getElementById("soundButton");
+
+      button.addEventListener("click", () => {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContextClass) {
+          alert("このブラウザでは音を鳴らせませんでした。");
+          return;
+        }
+
+        const context = new AudioContextClass();
+        const notes = [523.25, 659.25, 783.99, 1046.5];
+
+        notes.forEach((frequency, index) => {
+          const oscillator = context.createOscillator();
+          const gain = context.createGain();
+          const start = context.currentTime + index * 0.13;
+
+          oscillator.type = "square";
+          oscillator.frequency.value = frequency;
+          gain.gain.setValueAtTime(0.035, start);
+          gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.11);
+
+          oscillator.connect(gain);
+          gain.connect(context.destination);
+          oscillator.start(start);
+          oscillator.stop(start + 0.12);
+        });
+      });
+    }
+
+    function fakeLink(siteName) {
+      alert(`${siteName} は架空のサイトです。`);
+      return false;
+    }
+
+    initializeCounter();
+    createSnow();
+    initializeGuestbook();
+    initializeSoundButton();
+  </script>
+</body>
+</html>
